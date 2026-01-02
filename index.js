@@ -54,8 +54,9 @@ app.post("/books", async(req, res) =>{
 
 //. Create an API to get all the books in the database as response. Make sure to do error handling.
 app.get("/books", async(req,res) => {
-    const books = await Book.find()
+   
     try{
+         const books = await Book.find()
         if(books.length===0){
             res.status(200).json({error: "No books found in databse"})
         }
@@ -71,9 +72,10 @@ app.get("/books", async(req,res) => {
 
 // 4. Create an API to get a book's detail by its title. Make sure to do error handling.
 app.get("/books/:title", async(req,res) => {
-    const booksTitle = await Book.findOne({title: req.params.title})
+    
 
     try{
+        const booksTitle = await Book.findOne({title: req.params.title})
         if(!booksTitle){
           res.status(404).json({error: "No data dound."})
         }
@@ -88,8 +90,9 @@ app.get("/books/:title", async(req,res) => {
 
 // 5. Create an API to get details of all the books by an author. Make sure to do error handling.
 app.get("/books/author/:author", async(req,res) => {
-    const bookAuthor = await Book.findOne({author: req.params.author});
+   
     try{
+         const bookAuthor = await Book.findOne({author: req.params.author});
     if(!bookAuthor){
         res.status(404).json({error:"Book not found!" })
     }
@@ -104,8 +107,9 @@ app.get("/books/author/:author", async(req,res) => {
 
 // 6. Create an API to get all the books which are of "Business" genre.
 app.get("/books/genre/:genre", async(req,res) => {
-    const bookGenre = await Book.find({genre: req.params.genre}) 
+   
     try{
+         const bookGenre = await Book.find({genre: req.params.genre}) 
        if(bookGenre.length===0){
         res.status(404).json({error: "Book not found."})
        }
@@ -120,8 +124,9 @@ app.get("/books/genre/:genre", async(req,res) => {
 
 // 7. Create an API to get all the books which was released in the year 2012.
 app.get("/books/year/:year", async(req,res) => {
-    const bookYear = await Book.find({publishedYear: req.params.year})
+    
     try{
+        const bookYear = await Book.find({publishedYear: req.params.year})
         if(bookYear.length===0){
            res.status(404).json({error: "Book not found."})
         }
@@ -186,7 +191,9 @@ app.delete("/books/:id", async(req,res) => {
         res.status(500).json({error: "Failed to fetch data."})
     }
 })
-const PORT = 3000;
-app.listen(PORT, () => {
-    console.log(`Server is running on PORT ${PORT}`)
-})
+// const PORT = 3000;
+// app.listen(PORT, () => {
+//     console.log(`Server is running on PORT ${PORT}`)
+// })
+
+module.exports = app;
